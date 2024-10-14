@@ -103,7 +103,7 @@ class HashTable{
         int search(int key){
             int index = key%size;
             if (arr[index]==key){
-                return index+1;
+                return index;
             }
             else{
                 for (int i=1; i<size; i++){
@@ -112,7 +112,7 @@ class HashTable{
                         return -1;
                     }
                     if (arr[newIndex] == key) {
-                        return newIndex + 1;
+                        return newIndex;
                     }
                 }
             }
