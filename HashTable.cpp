@@ -27,7 +27,7 @@ class HashTable{
         // to inset a key we need to find the index using the hash function and handle the case whee the index is already occupied(collision) and use quadratic probing to find the next empty index
         // but first we find the load and see if we need to resize the table
         void insert(int key){
-            float load = static_cast<float> (capacity+1)/size;
+            float load = static_cast<float> (capacity)/size;
             if (load>=0.8){
                 resizeTable();
             }
