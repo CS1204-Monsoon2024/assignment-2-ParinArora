@@ -64,6 +64,7 @@ class HashTable{
             if (arr[index]==key){
                 arr[index] = -1;
                 capacity--;
+                return;
             }
             else{
                 int originalindex = index;
