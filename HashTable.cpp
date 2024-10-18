@@ -67,15 +67,12 @@ class HashTable{
             }
             else{
                 int originalindex = index;
-                for (int i=1; i!=originalindex; i++){
+                for (int i=1; (index +i*i)%size !=originalindex; i++){
                     int newIndex = (index + i*i)%size;
                     if (arr[newIndex]==key){
                         arr[newIndex] = -1;
                         capacity--;
                         return;
-                    }
-                    if (newIndex==originalindex){
-                        break;
                     }
                 }
             }
@@ -120,7 +117,7 @@ class HashTable{
                 return index;
             }
             else{
-                for (int i=1; i<size; i++){
+                for (int i=1; (index + i*i)%size!=index; i++){
                     int newIndex = (index + i*i)%size;
                     if (arr[newIndex] == -1) {
                         return -1;
@@ -128,9 +125,7 @@ class HashTable{
                     if (arr[newIndex] == key) {
                         return newIndex;
                     }
-                    if(newIndex == index){
-                        return -1;
-                    }
+                    
                 }
             }
             return -1;
