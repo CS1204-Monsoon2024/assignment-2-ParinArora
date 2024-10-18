@@ -32,6 +32,10 @@ class HashTable{
                 resizeTable();
             }
             int index = key%size;
+            if (arr[index] == key) {
+            cout << "Duplicate key insertion is not allowed" << endl;
+            return;
+            }
             if (arr[index]==-1){
                 arr[index] = key;
                 capacity++;
@@ -40,6 +44,10 @@ class HashTable{
             else{
                 for (int i=1; i<size; i++){
                     int newIndex = (index + i*i)%size;
+                    if (arr[newIndex] == key) {
+                    cout << "Duplicate key insertion is not allowed" << endl;
+                    return;
+                    }
                     if (arr[newIndex]==-1){
                         arr[newIndex] = key;
                         capacity++;
@@ -47,6 +55,7 @@ class HashTable{
                     }
                 }
             }
+            cout << "Max probing limit reached!" << endl;
         }
 
         // to remove a key we need to find the index using the hash function and handle the case where the index is already occupied and use quadratic probing to find the key
@@ -57,15 +66,20 @@ class HashTable{
                 capacity--;
             }
             else{
-                for (int i=1; i<size; i++){
+                int originalindex = index;
+                for (int i=1; i!=originalindex; i++){
                     int newIndex = (index + i*i)%size;
                     if (arr[newIndex]==key){
                         arr[newIndex] = -1;
                         capacity--;
                         return;
                     }
+                    if (newIndex==originalindex){
+                        break;
+                    }
                 }
             }
+            cout << "Element not found" << endl;
         }
         
 
@@ -113,6 +127,9 @@ class HashTable{
                     }
                     if (arr[newIndex] == key) {
                         return newIndex;
+                    }
+                    if(newIndex == index){
+                        return -1;
                     }
                 }
             }
